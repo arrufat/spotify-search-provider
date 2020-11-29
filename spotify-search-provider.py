@@ -2,18 +2,22 @@
 
 import os
 import sys
+from urllib.request import urlopen
 
 import dbus
 import dbus.service
 
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
+
 from spotipy import Spotify, SpotifyPKCE
+
 
 search_bus_name = "org.gnome.Shell.SearchProvider2"
 sbn = dict(dbus_interface=search_bus_name)
 
 CLIENT_ID = "9226139be2064e9890c50b8021bbbfbf"
+ALBUMART_DIR = os.path.expanduser("~/.cache/gssp-spotify/albumart")
 CACHE_PATH = os.path.expanduser("~/.cache/gssp-spotify/.cache")
 REDIRECT_URI = "http://localhost:8888/callback"
 ACCESS_SCOPE = "user-modify-playback-state user-read-playback-state"
@@ -34,7 +38,7 @@ def parse_tracks(raw):
             artist=track["album"]["artists"][0]["name"],
             album=track["album"]["name"],
             uri=track["uri"],
-            # albumart_url=track["album"]["images"][-1]["url"],
+            albumart_url=track["album"]["images"][-1]["url"],
         )
         out.append(track_details)
     if not out:
@@ -54,6 +58,8 @@ class SpotifySearchProvider(dbus.service.Object):
         bus_name = dbus.service.BusName(self.bus_name, bus=self.session_bus)
         dbus.service.Object.__init__(self, bus_name, self._object_path)
         os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
+        os.makedirs(ALBUMART_DIR, exist_ok=True)
+
         self.auth_manager = SpotifyPKCE(
             client_id=CLIENT_ID,
             cache_path=CACHE_PATH,
@@ -79,12 +85,13 @@ class SpotifySearchProvider(dbus.service.Object):
 
         out = []
         self.results = {}
-        tracks = parse_tracks(self.spotify.search("artist:" + qs))
+        tracks = parse_tracks(self.spotify.search(qs, limit=5))
         for track in tracks:
             self.results[track["uri"]] = {
                 "title": track["title"],
                 "artist": track["artist"],
                 "album": track["album"],
+                "albumart_url": track["albumart_url"],
             }
             out.append(track["uri"])
         return out
@@ -104,7 +111,14 @@ class SpotifySearchProvider(dbus.service.Object):
                 entry["description"] = (
                     self.results[uri]["artist"] + " - " + self.results[uri]["album"]
                 )
-                entry["gicon"] = "spotify-client"
+                basename = os.path.basename(self.results[uri]["albumart_url"])
+                albumart_path = os.path.join(ALBUMART_DIR, basename)
+                if not os.path.exists(albumart_path):
+                    with open(albumart_path, "wb") as f:
+                        with urlopen(self.results[uri]["albumart_url"]) as r:
+                            f.write(r.read())
+
+                entry["gicon"] = albumart_path
                 out.append(entry)
         return out
 
