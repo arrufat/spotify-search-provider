@@ -1,0 +1,8 @@
+[Unit]
+Description=Spotify search provider for GNOME Shell daemon
+
+[Service]
+Type=dbus
+BusName=org.gnome.Spotify.SearchProvider
+ExecStart=/usr/lib/spotify-search-provider/spotify-search-provider.py
+

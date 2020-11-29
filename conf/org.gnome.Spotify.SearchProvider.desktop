@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Categories=GNOME;Audio;Music;Player;AudioVideo;
+Icon=spotify-client
+Name=Spotify
+Comment=GNOME Shell search provider for Spotify
+Terminal=false
+Type=Application

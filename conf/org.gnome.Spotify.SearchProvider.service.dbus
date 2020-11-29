@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.gnome.Spotify.SearchProvider
+Exec=/usr/lib/spotify-search-provider/spotify-search-provider.py
+SystemdService=org.gnome.Spotify.SearchProvider.service
