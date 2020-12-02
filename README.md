@@ -9,4 +9,6 @@ Spotify search provider for GNOME Shell
 - python-gobject
 - [spotipy](https://github.com/plamere/spotipy)
 
-# Credits
+## Credits
+
+- [gnome-pass-search-provider](https://github.com/jle64/gnome-pass-search-provider)
