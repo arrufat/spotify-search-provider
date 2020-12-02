@@ -12,3 +12,4 @@ Spotify search provider for GNOME Shell
 ## Credits
 
 - [gnome-pass-search-provider](https://github.com/jle64/gnome-pass-search-provider)
+- [krunner-spotify](https://github.com/MartijnVogelaar/krunner-spotify)
