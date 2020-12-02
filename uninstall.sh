@@ -8,6 +8,7 @@ LIBDIR=${LIBDIR:-/usr/lib}
 
 # The actual executable
 rm "${LIBDIR}"/spotify-search-provider/spotify-search-provider.py
+rmdir "${LIBDIR}"/spotify-search-provider
 
 # Search provider definition
 rm "${DATADIR}"/gnome-shell/search-providers/org.gnome.Spotify.SearchProvider.ini
