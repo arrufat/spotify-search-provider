@@ -1,2 +1,12 @@
 # spotify-search-provider
 Spotify search provider for GNOME Shell
+
+![Screencast](misc/screencast.gif)
+
+## Dependencies
+
+- python-dbus
+- python-gobject
+- [spotipy](https://github.com/plamere/spotipy)
+
+# Credits
