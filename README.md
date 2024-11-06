@@ -18,7 +18,7 @@ yay -S spotify-search-provider
 Install the following dependencies:
 
 - python-dbus (might be named python3-dbus)
-- python-gobject (might be named python3-dbus)
+- python-gobject (might be named python3-gobject)
 - [spotipy](https://github.com/plamere/spotipy): `pip install --user spotipy`
 
 Then run:
