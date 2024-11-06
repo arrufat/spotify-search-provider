@@ -20,7 +20,7 @@ CLIENT_ID = "9226139be2064e9890c50b8021bbbfbf"
 CACHE_DIR = os.path.expanduser("~/.cache/spotify-search-provider/")
 ALBUMART_DIR = os.path.join(CACHE_DIR, "albumart")
 CACHE_FILE = os.path.join(CACHE_DIR, ".cache")
-REDIRECT_URI = "http://localhost:8888/callback"
+REDIRECT_URI = "http://localhost:5071/callback"
 ACCESS_SCOPE = "user-modify-playback-state user-read-playback-state"
 
 search_bus_name = "org.gnome.Shell.SearchProvider2"
