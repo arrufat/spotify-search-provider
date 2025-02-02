@@ -12,9 +12,6 @@ install -Dm 0755 spotify-search-provider.py "${LIBDIR}"/spotify-search-provider/
 # Search provider definition
 install -Dm 0644 conf/org.gnome.Spotify.SearchProvider.ini "${DATADIR}"/gnome-shell/search-providers/org.gnome.Spotify.SearchProvider.ini
 
-# Desktop file (for having an icon)
-install -Dm 0644 conf/org.gnome.Spotify.SearchProvider.desktop "${DATADIR}"/applications/org.gnome.Spotify.SearchProvider.desktop
-
 # DBus configuration (no-systemd)
 install -Dm 0644 conf/org.gnome.Spotify.SearchProvider.service.dbus "${DATADIR}"/dbus-1/services/org.gnome.Spotify.SearchProvider.service
 

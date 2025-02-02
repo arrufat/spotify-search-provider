@@ -13,9 +13,6 @@ rmdir "${LIBDIR}"/spotify-search-provider
 # Search provider definition
 rm "${DATADIR}"/gnome-shell/search-providers/org.gnome.Spotify.SearchProvider.ini
 
-# Desktop file (for having an icon)
-rm "${DATADIR}"/applications/org.gnome.Spotify.SearchProvider.desktop
-
 # DBus configuration (no-systemd)
 rm "${DATADIR}"/dbus-1/services/org.gnome.Spotify.SearchProvider.service
 
