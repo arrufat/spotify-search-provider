@@ -6,15 +6,9 @@ from urllib.request import urlopen
 
 import dbus
 import dbus.service
-
 from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
-
 from spotipy import Spotify, SpotifyPKCE
-
-
-search_bus_name = "org.gnome.Shell.SearchProvider2"
-sbn = dict(dbus_interface=search_bus_name)
 
 CLIENT_ID = "9226139be2064e9890c50b8021bbbfbf"
 CACHE_DIR = os.path.expanduser("~/.cache/spotify-search-provider/")
